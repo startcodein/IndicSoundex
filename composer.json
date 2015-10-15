@@ -1,0 +1,21 @@
+{
+    "name": "startcode/indic-soundex",
+    "description": "Indian laguage soundex package based on Santhosh Thottingal's algorithm. For more info on algorithm http://thottingal.in/blog/2009/07/26/indicsoundex/",
+    "autoload": {
+        "psr-4": {
+            "Startcode\\":"src/Startcode"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.0.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sanoob Pattanath",
+            "email": "hello@pattanath.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
