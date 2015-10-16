@@ -37,9 +37,9 @@ class IndicSoundexTest extends PHPUnit_Framework_TestCase
         // Add your soundex tests here
         return [
            'small en_US' =>  ['vasudev', 'v2310000'],
-           'camel en_US' =>  ['Rupert', 'r1630000'],
+           'camel en_US' =>  ['Rupert',  'r1630000'],
            'kn_IN'       =>  ['ಬೆಂಗಳೂರು', 'ಬDNFQCPC'],
-           'hi_IN'       =>  ['आम्र् फल्', 'आNPMQ000']
+           'hi_IN'       =>  ['आम्र् फल्',  'आNPMQ000']
         ];
 
     }
@@ -64,11 +64,11 @@ class IndicSoundexTest extends PHPUnit_Framework_TestCase
     {
         //add String comparison tests here
         return [
-           'hi_IN not equal'  => ['बॆंगळूरु', 'आम्र् फल्', -1],
-           'en_US and kn_IN not equal'    => ['Bangalore', 'ಬೆಂಗಳೂರು', -1],
-           'hi_IN equal'    => ['बॆंगळूरु', 'बॆंगळूरु', 0],
-           'ml_IN equal sound' =>['അമ്മ','അമ',1],
-           'kn_IN and hi_IN sound equal'  => ['ಬೆಂಗಳೂರು', 'बॆंगळूरु', 2]
+           'hi_IN not equal'             => ['बॆंगळूरु', 'आम्र् फल्', -1],
+           'en_US and kn_IN not equal'   => ['Bangalore', 'ಬೆಂಗಳೂರು', -1],
+           'hi_IN equal'                 => ['बॆंगळूरु', 'बॆंगळूरु', 0],
+           'ml_IN equal sound'           => ['അമ്മ','അമ',1],
+           'kn_IN and hi_IN sound equal' => ['ಬೆಂಗಳೂರು', 'बॆंगळूरु', 2]
         ];
     }
 }
