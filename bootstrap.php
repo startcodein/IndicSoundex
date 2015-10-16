@@ -1,3 +1,24 @@
 <?php
+#
+# Created as part of startcodein/indicsoundex
+# Copyright 2015-2016 Sanoob Pattanath <hello[at]pattanath.com>
+# http://startcode.in
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Library General Public License for more details.
+#
+# If you find any bugs or security issues please email <hello[at]pattanath.com> or raise an issue on github.
+#
 
+
+/**
+ * Add any other bootstrap configurations here
+ */
 require_once __DIR__.'/vendor/autoload.php';

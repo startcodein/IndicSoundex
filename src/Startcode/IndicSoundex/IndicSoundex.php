@@ -1,10 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: shanoop
- * Date: 15/10/15
- * Time: 10:21 PM
- */
+#
+#startcodein/indicsoundex
+#{description}
+#Copyright(C) 2015 Sanoob Pattanath <hello[at]pattanath.com>
+#http://startcode.in
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#If you find any bugs or security issues please email <hello[at]pattanath.com> or raise an issue on github.
+#
 
 namespace Startcode\IndicSoundex;
 
@@ -12,6 +27,10 @@ namespace Startcode\IndicSoundex;
 class IndicSoundex
 {
 
+    /**
+     * Indic soundex character map, adapted from
+     * http://thottingal.in/soundex/soundex.html
+     */
    private $charmap=[
        "hi_IN"=>[ "ँ", "ं", "ः", "ऄ", "अ", "आ", "इ", "ई", "उ", "ऊ", "ऋ", "ऌ", "ऍ", "ऎ", "ए", "ऐ", "ऑ", "ऒ", "ओ", "औ", "क", "ख", "ग", "घ", "ङ", "च", "छ", "ज", "झ", "ञ", "ट", "ठ", "ड", "ढ", "ण", "त", "थ", "द", "ध", "न", "ऩ", "प", "फ", "ब", "भ", "म", "य", "र", "ऱ", "ल", "ळ", "ऴ", "व", "श", "ष", "स", "ह", "ऺ", "ऻ", "़", "ऽ", "ा", "ि", "ी", "ु", "ू", "ृ", "ॄ", "ॅ", "ॆ", "े", "ै", "ॉ", "ॊ", "ो", "ौ", "्", "ॎ", "ॏ", "ॐ", "॑", "॒", "॓", "॔", "ॕ", "ॖ", "ॗ", "क़", "ख़", "ग़", "ज़", "ड़", "ढ़", "फ़", "य़", "ॠ", "ॡ", "ॢ", "ॣ", "।", "॥", "०", "१", "२", "३", "४", "५", "६", "७", "८", "९", "॰", "ॱ", "ॲ", "ॳ", "ॴ", "ॵ", "ॶ", "ॷ", "ॸ", "ॹ", "ॺ", "ॻ", "ॼ", "ॽ", "ॾ", "ॿ" ],
        "bn_IN"=>[ "ঁ", "ং", "ঃ", "঄", "অ", "আ", "ই", "ঈ", "উ", "ঊ", "ঋ", "ঌ", "঍", "঎", "এ", "ঐ", "঑", "঒", "ও", "ঔ", "ক", "খ", "গ", "ঘ", "ঙ", "চ", "ছ", "জ", "ঝ", "ঞ", "ট", "ঠ", "ড", "ঢ", "ণ", "ত", "থ", "দ", "ধ", "ন", "঩", "প", "ফ", "ব", "ভ", "ম", "য", "র", "঱", "ল", "঳", "঴", "঵", "শ", "ষ", "স", "হ", "঺", "঻", "়", "ঽ", "া", "ি", "ী", "ু", "ূ", "ৃ", "ৄ", "৅", "৆", "ে", "ৈ", "৉", "৊", "ো", "ৌ", "্", "ৎ", "৏", "৐", "৑", "৒", "৓", "৔", "৕", "৖", "ৗ", "৘", "৙", "৚", "৛", "ড়", "ঢ়", "৞", "য়", "ৠ", "ৡ", "ৢ", "ৣ", "৤", "৥", "০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "ৰ", "ৱ", "৲", "৳", "৴", "৵", "৶", "৷", "৸", "৹", "৺", "৻", "ৼ", "৽", "৾", "৿" ],
@@ -29,10 +48,14 @@ class IndicSoundex
    ];
 
     public function __construct()
-    {
+    {    }
 
-    }
-
+    /**
+     * Splits multibyte string to an array of multi-byte characters
+     *
+     * @param $string mb_string
+     * @return array
+     */
     private function mb_str_split( $string )
     {
         # Split at all position not after the start: ^
@@ -40,32 +63,11 @@ class IndicSoundex
         return preg_split('/(?<!^)(?!$)/u', $string );
     }
 
-
-    private function charCompare( $char1,  $char2)
-    {
-        if($char1 ===$char2)
-            return 0;
-
-        $char1_idx = -1;
-        $char2_idx = -1;
-
-        foreach($this->charmap as $lang => $letters){
-
-            foreach($letters as $index => $letter){
-
-                if($letter === $char1)
-                    $char1_idx = $index;
-
-                if($letter === $char2)
-                    $char2_idx = $index;
-            }
-        }
-
-        if($char1_idx == -1 or $char2_idx == -1)
-            return -1;
-
-        return ($char1_idx === $char2_idx)?1:NULL;
-    }
+    /**
+     *  Detect multi-byte string language from charmap
+     * @param $char
+     * @return int|null|string
+     */
 
     private function language($char)
     {
@@ -78,6 +80,12 @@ class IndicSoundex
         }
         return null;
     }
+
+    /**
+     * Create soundex code for multi-byte character
+     * @param $char
+     * @return int
+     */
 
     private function soundexCode($char)
     {
@@ -98,6 +106,14 @@ class IndicSoundex
 
         return 0;
     }
+
+    /**
+     * Makes soundex for given multi-byte string with default length of 8 and padded with 0s
+     *
+     * @param $word
+     * @param int $length length of soundex
+     * @return string
+     */
 
     public function soundex($word, $length = 8)
     {
@@ -135,6 +151,14 @@ class IndicSoundex
         return mb_substr($sndx.$pad,0,$length);
     }
 
+
+    /**
+     * Multi-byte string soundex compare
+     * @param $string1
+     * @param $string2
+     * @return int [-1,0,1,2]
+     */
+
     public function compare($string1, $string2)
     {
         if($string1 === $string2)
@@ -147,7 +171,6 @@ class IndicSoundex
             return 1;
 
         //Check whether the first letters are phonetically same from different languages
-        //TODO mb string
         if($this->soundexCode($string1[0]) === $this->soundexCode($string2[0])){
             if(mb_substr($soundex1,1) === mb_substr($soundex2,1))
                 return 2;
