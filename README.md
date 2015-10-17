@@ -9,14 +9,32 @@ pronounced in English. This module implements Soundex algorithm for
 Engish as well as a modified version of soundex algorithm for Indian
 languages.
 
+This include Indian major languages: 
+
+- Hindi     (hi_IN)
+- Bengali   (bn_IN)
+- Punjabi   (pa_IN)
+- Gujarati  (gu_IN)
+- Oriya     (or_IN)
+- Tamil     (ta_IN)
+- Telugu    (te_IN)
+- Kannada   (kn_IN)
+- Malayalam (ml_IN)
+- English   (en_US)
+
+This can be extended to any language by including soundex character map for it.  
 Quick start
 -----------
 
+Installing using git
 ```
 git clone https://github.com/startcodein/IndicSoundex.git
 ```
 
-User composer to generate autoloader
+Installing using composer
+```
+composer require startcodein/indicsoundex:@dev
+```
 
 #### Generating soundex
 
